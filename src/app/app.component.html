@@ -1,0 +1,45 @@
+<main class="p-p-2">
+  <div class="algorithms p-d-flex p-jc-center p-ai-center">
+    <div class="p-text-bold p-mr-2">Algorithm</div>
+    <p-dropdown [options]="algorithms" [(ngModel)]="selectedAlgorithm" optionLabel="name" optionValue="algorithm"></p-dropdown>
+  </div>
+  <div class="p-p-2 encodedheader">
+    <img src="assets/images/jwt.png" width="20"><h1 class="p-ml-2">Encoded</h1><small class="p-ml-2 p-text-uppercase p-text-light">Paste a token here</small>
+  </div>
+  <div class="p-p-2 decodedheader p-text-light">
+    <h1>Decoded</h1><small class="p-ml-2 p-text-uppercase p-text-light">Edit the payload and secret</small>
+  </div>
+  <div class="encodedJWT">
+    <textarea class="p-p-2 JWT" [(ngModel)]="jwt">JWT</textarea>
+  </div>
+  <div class="decodedJWT">
+    <div class="p-p-2 headerheader p-text-light">HEADER: <span class="p-text-uppercase p-text-light">ALGORITHM &amp; TOKEN TYPE</span></div>
+    <textarea class="p-p-2 header" [(ngModel)]="header" readonly>Header</textarea>
+    <div class="p-p-2 payloadheader p-text-light">PAYLOAD: <span class="p-text-uppercase p-text-light">DATA</span></div>
+    <textarea class="p-p-2 payload" [(ngModel)]="payload">Payload</textarea>
+    <div class="p-p-2 verifysignatureheader p-text-light">VERIFY SIGNATURE</div>
+    <div class="p-p-2 verifysignature">
+      <pre>{{selectedAlgorithm}} (</pre>
+      <pre>  base64UrlEncode(header) + "." +</pre>
+      <pre>  base64UrlEncode(payload),</pre>
+      <div class="p-d-flex p-ai-center">
+        <p-button type="button" styleClass="p-ml-2 p-button-sm" label="SIGN with" icon="pi pi-shield" (click)="sign()"></p-button>
+        <input class="p-ml-2 p-inputtext-sm" type="text" pInputText [(ngModel)]="secret"/>
+        <p-checkbox class="p-ml-2" label="secret base64 encoded" [(ngModel)]="base64EncodedSecret" [binary]="true"></p-checkbox>
+        <div class="p-ml-2">( {{ realSecret }} )</div>
+      </div>
+      <pre>)</pre>
+    </div>
+  </div>
+  <div class="signaturestatus">
+    <ng-container *ngIf="signatureVerified; else invalidSignature">
+      <p-message severity="success" text="Sinature Verified" styleClass="block"></p-message>
+    </ng-container>
+    <ng-template #invalidSignature>
+      <p-message severity="error" text="Sinature Invalid" styleClass="block"></p-message>
+    </ng-template>
+  </div>
+  <div class="copydecodedJWT">
+    <p-button type="button" styleClass="block" label="COPY"></p-button>
+  </div>
+</main>

@@ -1,0 +1,129 @@
+:host {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+}
+
+main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
+  grid-template-areas:
+    "algorithms      algorithms"
+    "encoded-header  decodedheader"
+    "encodedJWT      decodedJWT"
+    "signaturestatus copydecodedJWT"
+    ;
+  grid-gap: 10px;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  outline: 1px solid #ccc;
+}
+
+:host ::ng-deep main {
+  h1 {
+    display: inline-block;
+  }
+
+  textarea {
+    margin: 0;
+    border-top:    none;
+    border-left:   none;
+    border-right:  none;
+    border-bottom: 1px solid #aaa;
+  }
+
+  .algorithms {
+    grid-area: algorithms;
+  }
+
+  .encoded-header {
+    grid-area: encodedheader;
+  }
+
+  .decoded-header {
+    grid-area: decodedheader;
+  }
+
+  .encodedJWT {
+    grid-area: encodedJWT;
+    border: 1px solid #aaa;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows:    minmax(0, 1fr);
+    grid-template-areas:
+      "JWT"
+      ;
+
+    .JWT {
+      grid-area: JWT;
+    }
+  }
+
+  .decodedJWT {
+    grid-area: decodedJWT;
+    border: 1px solid #aaa;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) auto minmax(0, 1fr) auto auto;
+    grid-template-areas:
+      "headerheader"
+      "header"
+      "payloadheader"
+      "payload"
+      "verifysignatureheader"
+      "verifysignature"
+      ;
+    grid-gap: 0px;
+
+    .headerheader {
+      grid-area: headerheader;
+      border-bottom: 1px solid #aaa;
+    }
+
+    .header {
+      grid-area: header;
+    }
+
+    .payloadheader {
+      grid-area: payloadheader;
+      border-bottom: 1px solid #aaa;
+    }
+
+    .payload {
+      grid-area: payload;
+    }
+
+    .verifysignatureheader {
+      grid-area: verifysignatureheader;
+      border-bottom: 1px solid #aaa;
+    }
+
+    .verifysignature {
+      grid-area: verifysignature;
+      background-color: #fafafa;
+    }
+  }
+
+  .signaturestatus {
+    grid-area: signaturestatus;
+
+    vertical-align: middle;
+  }
+
+  .copydecodedJWT {
+    grid-area: copydecodedJWT;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows:    minmax(0, 1fr);
+
+  }
+
+  .block {
+    width: 100%;
+  }
+}
