@@ -1,0 +1,43 @@
+html, body {
+  font-size: var(--vscode-font-size);
+  font-weight: var(--vscode-font-weight);
+  font-family: var(--vscode-font-family);
+  color: var(--vscode-editor-foreground) !important;
+  background-color: var(--vscode-editor-background) !important;
+}
+
+textarea {
+  resize: none;
+}
+
+.p-toolbar, .p-dropdown, .p-selectbutton .p-button, .p-datatable, textarea {
+  color:  var(--vscode-editor-foreground);
+  background: var(--vscode-editor-background);
+}
+
+.p-tabview {
+  .p-tabview-nav li, .p-tabview-nav li.p-highlight {
+    .p-tabview-nav-link {
+      background: var(--vscode-editor-background) !important;
+    }
+  }
+  .p-tabview-panels {
+    background: var(--vscode-editor-background) !important;
+  }
+}
+
+.p-datatable .p-datatable-thead>tr>th {
+  border-width: 0 1px 1px 0;
+  color:  var(--vscode-editor-foreground);
+  background: var(--vscode-editor-background);
+}
+
+.p-datatable .p-datatable-tbody>tr>td {
+  border-width: 0 1px 1px 0;
+  color:  var(--vscode-editor-foreground);
+  background: var(--vscode-editor-background);
+}
+
+.p-dropdown-panel {
+  z-index: 10000;
+}

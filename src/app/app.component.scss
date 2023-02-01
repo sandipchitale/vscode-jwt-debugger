@@ -1,0 +1,185 @@
+:host {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+}
+
+main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-rows: auto auto 170px auto minmax(0, 1fr) auto;
+  grid-template-areas:
+    "algorithms      algorithms"
+    "jwtheader       jwtheader"
+    "jwt             jwt"
+    "encodedheader   decodedheader"
+    "encodedJWT      decodedJWT"
+    "signaturestatus copydecodedJWT"
+    ;
+  grid-gap: 10px;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  outline: 1px solid #ccc;
+}
+
+:host ::ng-deep main {
+  h1 {
+    display: inline-block;
+    margin-block: 0;
+  }
+
+  textarea {
+    margin: 0;
+    border-top:    none;
+    border-left:   none;
+    border-right:  none;
+    border-bottom: 1px solid #aaa;
+  }
+
+  .algorithms {
+    grid-area: algorithms;
+  }
+
+  .jwt-header {
+    grid-area: jwtheader;
+  }
+
+  .jwt {
+    grid-area: jwt;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows:    minmax(0, 1fr);
+    grid-template-areas:
+      "JWT"
+      ;
+
+    .JWT {
+      grid-area: JWT;
+      border: 1px solid #aaa;
+    }
+  }
+
+  .encoded-header {
+    grid-area: encodedheader;
+  }
+
+  .decoded-header {
+    grid-area: decodedheader;
+  }
+
+  .encodedJWT {
+    grid-area: encodedJWT;
+    border: 1px solid #aaa;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) auto minmax(0, 1fr) auto 170px;
+    grid-template-areas:
+      "eheaderheader"
+      "eheader"
+      "epayloadheader"
+      "epayload"
+      "esignatureheader"
+      "esignature"
+      ;
+    grid-gap: 0px;
+
+    .eheaderheader {
+      grid-area: eheaderheader;
+      border-bottom: 1px solid #aaa;
+    }
+
+    .eheader {
+      grid-area: eheader;
+      color: #fb015b;
+    }
+
+    .epayloadheader {
+      grid-area: epayloadheader;
+      border-bottom: 1px solid #aaa;
+    }
+
+    .epayload {
+      grid-area: epayload;
+      color: #d63aff;
+    }
+
+    .esignatureheader {
+      grid-area: esignatureheader;
+      border-bottom: 1px solid #aaa;
+    }
+
+    .esignature {
+      grid-area: esignature;
+      color: #00b9f1;
+    }
+  }
+
+  .decodedJWT {
+    grid-area: decodedJWT;
+    border: 1px solid #aaa;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) auto minmax(0, 1fr) auto 170px;
+    grid-template-areas:
+      "headerheader"
+      "header"
+      "payloadheader"
+      "payload"
+      "verifysignatureheader"
+      "verifysignature"
+      ;
+    grid-gap: 0px;
+
+    .headerheader {
+      grid-area: headerheader;
+      border-bottom: 1px solid #aaa;
+    }
+
+    .header {
+      grid-area: header;
+      color: #fb015b;
+    }
+
+    .payloadheader {
+      grid-area: payloadheader;
+      border-bottom: 1px solid #aaa;
+    }
+
+    .payload {
+      grid-area: payload;
+      color: #d63aff;
+    }
+
+    .verifysignatureheader {
+      grid-area: verifysignatureheader;
+      border-bottom: 1px solid #aaa;
+    }
+
+    .verifysignature {
+      grid-area: verifysignature;
+      color: #00b9f1;
+    }
+  }
+
+  .signaturestatus {
+    grid-area: signaturestatus;
+    vertical-align: middle;
+  }
+
+  .copydecodedJWT {
+    grid-area: copydecodedJWT;
+
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows:    minmax(0, 1fr);
+
+  }
+
+  .block {
+    width: 100%;
+  }
+}

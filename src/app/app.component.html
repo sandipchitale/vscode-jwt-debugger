@@ -1,0 +1,56 @@
+<main class="p-2">
+  <div class="algorithms flex justify-content-center align-items-center">
+    <div class="text-bold mr-2">Algorithm</div>
+    <p-dropdown [options]="algorithms" [(ngModel)]="selectedAlgorithm" optionLabel="name" optionValue="algorithm"></p-dropdown>
+  </div>
+  <div class="jwt-header flex align-items-center">
+    <img src="assets/images/jwt.png" width="32"> <h1 class="ml-2">JWT</h1><small class="ml-2 text-uppercase text-light">Paste a JWT here</small>
+  </div>
+  <div class="jwt">
+    <textarea class="p-2 JWT" [(ngModel)]="jwt">JWT</textarea>
+  </div>
+  <div class="p-2 encoded-header">
+    <h1 class="ml-2">Encoded</h1>
+  </div>
+  <div class="p-2 decoded-header text-light">
+    <h1>Decoded</h1><small class="ml-2 text-uppercase text-light">Edit the payload and secret</small>
+  </div>
+  <div class="encodedJWT">
+    <div class="p-2 eheaderheader text-light">ENCODED HEADER: <span class="text-uppercase text-light">ALGORITHM &amp; TOKEN TYPE</span></div>
+    <textarea class="p-2 eheader" readonly>{{ encodedHeader }}</textarea>
+    <div class="p-2 epayloadheader text-light">ENCODED PAYLOAD: <span class="text-uppercase text-light">DATA</span></div>
+    <textarea class="p-2 epayload" readonly>{{ encodedPayload }}</textarea>
+    <div class="p-2 esignatureheader text-light">ENCODED SIGNATURE</div>
+    <textarea class="p-2 esignature" readonly>{{ encodedSignature }}</textarea>
+  </div>
+  <div class="decodedJWT">
+    <div class="p-2 headerheader text-light">HEADER: <span class="text-uppercase text-light">ALGORITHM &amp; TOKEN TYPE</span></div>
+    <textarea class="p-2 header" [(ngModel)]="header" readonly>Header</textarea>
+    <div class="p-2 payloadheader text-light">PAYLOAD: <span class="text-uppercase text-light">DATA</span></div>
+    <textarea class="p-2 payload" [(ngModel)]="payload">Payload</textarea>
+    <div class="p-2 verifysignatureheader text-light">VERIFY SIGNATURE</div>
+    <div class="p-2 verifysignature">
+      <pre>{{selectedAlgorithm}} (</pre>
+      <pre>  base64UrlEncode(header) + "." +</pre>
+      <pre>  base64UrlEncode(payload),</pre>
+      <div class="flex align-items-center">
+        <p-button type="button" styleClass="ml-2 p-button-sm" label="SIGN with" icon="pi pi-shield" (click)="sign()"></p-button>
+        <input class="ml-2 p-inputtext-sm" type="text" pInputText [(ngModel)]="secret"/>
+        <p-checkbox class="ml-2" label="secret base64 encoded" [(ngModel)]="base64EncodedSecret" [binary]="true"></p-checkbox>
+        <div class="ml-2">( {{ realSecret }} )</div>
+      </div>
+      <pre>)</pre>
+    </div>
+  </div>
+  <div class="signaturestatus">
+    <ng-container *ngIf="signatureVerified; else invalidSignature">
+      <p-message severity="success" text="Sinature Verified" styleClass="block"></p-message>
+    </ng-container>
+    <ng-template #invalidSignature>
+      <p-message severity="error" text="Sinature Invalid" styleClass="block"></p-message>
+    </ng-template>
+  </div>
+  <div class="copydecodedJWT">
+    <p-button type="button" styleClass="block" label="COPY"></p-button>
+  </div>
+</main>
